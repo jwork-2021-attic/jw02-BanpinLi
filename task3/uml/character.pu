@@ -1,0 +1,84 @@
+@startuml
+
+
+class ColorMap {
+    Map colorMap
+
+    getColors()
+    getRank()
+}
+
+class Matrix {
+    Position[][] positions
+
+    put()
+    getPostions()
+    getItems()
+}
+
+class Position {
+    Item item
+}
+
+abstract class Item {
+    String color
+
+    getRank()
+}
+
+class LittleDevil {
+    setColor()
+}
+
+interface Sorter {
+    load()
+    sort()
+    getPlan()
+}
+
+class SelectSort {
+    int[] nums
+    int m 
+    int n
+    ArrayList process
+
+    swap()
+}
+
+class QuickSort {
+    int[] nums
+    int m 
+    int n 
+    ArrayList process
+
+    swap()
+    quickSort()
+}
+
+class Snake {
+    Sorter sorter
+    String sortLog
+
+    setSorter()
+    sortMatrix()
+    getSortLog()
+    swapPosition()
+}
+
+SelectSort ..|> Sorter
+
+QuickSort ..|> Sorter
+
+Snake --> Sorter
+
+Snake ..> Matrix
+
+Matrix ..> Item
+
+Position --o Matrix
+
+Position --> Item
+
+LittleDevil --|> Item
+
+@enduml

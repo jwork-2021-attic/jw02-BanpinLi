@@ -1,0 +1,33 @@
+@startuml
+
+control Sorter as sorter
+entity result as res
+actor Snake as snake
+entity Ground as ground
+entity item as item
+entity colorMap as color
+
+color -> color : 获得需要的64种颜色
+
+color -> color : 将颜色随机打乱
+
+ground -> ground : 创建ground对象
+
+item -> item : 创建item对象
+
+color -> item : 将颜色赋值给item
+
+item -> ground : 作为参数传递\n给ground的方法
+
+snake -> snake : 获得snake对象
+
+sorter -> sorter : 创建sort的对象
+
+sorter -> snake : 将自身作为参数传递\n给snake的方法
+
+ground -> snake : 自身作为参数传递\n给snake的方法
+
+snake -> snake : 对ground进行排序，\n得到排序的结果
+
+snake -> res : 将排序结果输出\n到result.txt
+@enduml

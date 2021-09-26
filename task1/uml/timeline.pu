@@ -1,0 +1,23 @@
+@startuml
+control Sorter as sorter
+entity result as res
+actor Geezer as geezer
+entity Line as line
+entity Gourd as gourd
+
+line -> line : 创建line对象
+
+gourd -> line : 作为参数传递\n给line的方法
+
+geezer -> geezer : 获得Geezer对象
+
+sorter -> sorter : 创建sort的对象
+
+sorter -> geezer : 将自身作为参数传递\n给geezer的方法
+
+line -> geezer : 自身作为参数传递\n给geezer的方法
+
+geezer -> geezer : 对line进行排序，\n得到排序的结果
+
+geezer -> res : 将排序结果输出\n到result.txt
+@enduml
