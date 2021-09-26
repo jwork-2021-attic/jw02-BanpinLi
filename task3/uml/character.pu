@@ -8,8 +8,8 @@ class ColorMap {
     getRank()
 }
 
-class Ground {
-    Position[] positions
+class Matrix {
+    Position[][] positions
 
     put()
     getPostions()
@@ -38,6 +38,8 @@ interface Sorter {
 
 class SelectSort {
     int[] nums
+    int m 
+    int n
     ArrayList process
 
     swap()
@@ -45,6 +47,8 @@ class SelectSort {
 
 class QuickSort {
     int[] nums
+    int m 
+    int n 
     ArrayList process
 
     swap()
@@ -56,7 +60,7 @@ class Snake {
     String sortLog
 
     setSorter()
-    sortGround()
+    sortMatrix()
     getSortLog()
     swapPosition()
 }
@@ -67,11 +71,11 @@ QuickSort ..|> Sorter
 
 Snake --> Sorter
 
-Snake ..> Ground
+Snake ..> Matrix
 
-Ground ..> Item
+Matrix ..> Item
 
-Position --o Ground
+Position --o Matrix
 
 Position --> Item
 

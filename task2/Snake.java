@@ -1,6 +1,6 @@
 package W02.task2;
 
-import W02.task2.Ground.Position;
+import W02.task2.Line.Position;
 
 public class Snake {
     Sorter sorter;
@@ -10,8 +10,8 @@ public class Snake {
         this.sorter = sorter;
     }
 
-    public void sortGround(Ground ground) {
-        Position[] positions = ground.getPositions();
+    public void sortLine(Line line) {
+        Position[] positions = line.getPositions();
 
         int[] ranks = new int[positions.length];
         for (int i = 0; i < positions.length; i++) {
@@ -25,9 +25,9 @@ public class Snake {
 
         sortLog = new StringBuilder();
         for (String step : process) {
-            String[] s = step.split("<->");
+            String[] s = step.split(",");
             swapPosition(positions[Integer.parseInt(s[0])], positions[Integer.parseInt(s[1])]);
-            sortLog.append(ground.toString()).append("\n[frame]\n");
+            sortLog.append(line.toString()).append("\n[frame]\n");
         }
     }
 

@@ -27,7 +27,6 @@ public class QuickSort implements Sorter {
         int randomSub = r.nextInt(end - start) + start;
         int flagNum = nums[randomSub];
         swap(start, randomSub);
-        process.add(start + "<->" + randomSub);
 
         int left = start + 1;
         int right = end - 1;
@@ -40,17 +39,14 @@ public class QuickSort implements Sorter {
             }
             if (left != right) {
                 swap(left, right);
-                process.add(left + "<->" + right);
             }
         }
         int flagSub = left;
         if (nums[left] > flagNum) {
             flagSub = left - 1;
             swap(left - 1, start);
-            process.add(left - 1 + "<->" + start);
         } else {
             swap(left, start);
-            process.add(left + "<->" + start);
         }
 
         quickSort(nums, start, flagSub);
@@ -61,6 +57,7 @@ public class QuickSort implements Sorter {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
+        process.add(i + "," + j);
     }
 
     @Override

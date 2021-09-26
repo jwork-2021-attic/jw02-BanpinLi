@@ -9,22 +9,23 @@ public class Scene {
     public static void main(String[] args) throws IOException {
         String[] colors = ColorMap.getColors();
         shuffle(colors);
-        Ground ground = new Ground(8, 8);
+        Matrix matrix = new Matrix(8, 8);
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Item item = new LittleDevil();
                 item.color = colors[i * 8 + j];
-                ground.put(item, i, j);
+                matrix.put(item, i, j);
             }
         }
 
         Snake snake = new Snake();
 
-        Sorter sorter = new SelectSort();
-        // Sorter sorter = new QuickSort();
+        Sorter sorter;
+        // sorter = new SelectSort();
+        sorter = new QuickSort();
 
         snake.setSorter(sorter);
-        snake.sortGround(ground);
+        snake.sortMatrix(matrix);
 
         String sortLog = snake.getSortLog();
 

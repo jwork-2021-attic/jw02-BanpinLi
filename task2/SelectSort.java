@@ -25,7 +25,6 @@ public class SelectSort implements Sorter {
             }
             if (i != index) {
                 swap(i, index);
-                process.add(i + "<->" + index);
             }
         }
     }
@@ -34,6 +33,7 @@ public class SelectSort implements Sorter {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
+        process.add(i + "," + j);
     }
 
     @Override

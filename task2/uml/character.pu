@@ -8,7 +8,7 @@ class ColorMap {
     getRank()
 }
 
-class Ground {
+class Line {
     Position[] positions
 
     put()
@@ -56,7 +56,7 @@ class Snake {
     String sortLog
 
     setSorter()
-    sortGround()
+    sortLine()
     getSortLog()
     swapPosition()
 }
@@ -67,11 +67,11 @@ QuickSort ..|> Sorter
 
 Snake --> Sorter
 
-Snake ..> Ground
+Snake ..> Line
 
-Ground ..> Item
+Line ..> Item
 
-Position --o Ground
+Position --o Line
 
 Position --> Item
 

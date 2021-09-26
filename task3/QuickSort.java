@@ -5,14 +5,19 @@ import java.util.Random;
 
 public class QuickSort implements Sorter {
     private int[] nums;
+    private int m;
+    private int n;
     private ArrayList<String> process;
 
     @Override
     public void loadData(int[][] items) {
-        nums = new int[items.length * items[0].length];
-        for (int i = 0; i < items.length; i++) {
-            for (int j = 0; j < items[0].length; j++) {
-                this.nums[i * items.length + j] = items[i][j];
+        // 二维数组展开成一维进行排序
+        this.m = items.length;
+        this.n = items[0].length;
+        nums = new int[m * n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                this.nums[i * m + j] = items[i][j];
             }
         }
     }
@@ -32,7 +37,6 @@ public class QuickSort implements Sorter {
         int randomSub = r.nextInt(end - start) + start;
         int flagNum = nums[randomSub];
         swap(start, randomSub);
-        process.add(start + "<->" + randomSub);
 
         int left = start + 1;
         int right = end - 1;
@@ -45,17 +49,14 @@ public class QuickSort implements Sorter {
             }
             if (left != right) {
                 swap(left, right);
-                process.add(left + "<->" + right);
             }
         }
         int flagSub = left;
         if (nums[left] > flagNum) {
             flagSub = left - 1;
             swap(left - 1, start);
-            process.add(left - 1 + "<->" + start);
         } else {
             swap(left, start);
-            process.add(left + "<->" + start);
         }
 
         quickSort(nums, start, flagSub);
@@ -66,6 +67,8 @@ public class QuickSort implements Sorter {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
+        // 将一维变换映射到二维变换
+        process.add(i / n + "," + i % n + "," + j / n + "," + j % n);
     }
 
     @Override

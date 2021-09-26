@@ -1,6 +1,6 @@
 package W02.task3;
 
-import W02.task3.Ground.Position;
+import W02.task3.Matrix.Position;
 
 public class Snake {
     Sorter sorter;
@@ -10,13 +10,15 @@ public class Snake {
         this.sorter = sorter;
     }
 
-    public void sortGround(Ground ground) {
-        Position[] positions = ground.getPositions();
+    public void sortMatrix(Matrix matrix) {
+        Position[][] positions = matrix.getPositions();
+        int m = positions.length;
+        int n = positions[0].length;
 
-        int[][] ranks = new int[ground.m][ground.n];
-        for (int i = 0; i < ground.m; i++) {
-            for (int j = 0; j < ground.n; j++) {
-                ranks[i][j] = positions[i * ground.m + j].item.getRank();
+        int[][] ranks = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                ranks[i][j] = positions[i][j].item.getRank();
             }
         }
 
@@ -27,9 +29,13 @@ public class Snake {
 
         sortLog = new StringBuilder();
         for (String step : process) {
-            String[] s = step.split("<->");
-            swapPosition(positions[Integer.parseInt(s[0])], positions[Integer.parseInt(s[1])]);
-            sortLog.append(ground.toString()).append("\n[frame]\n");
+            String[] index = step.split(",");
+            int row1 = Integer.parseInt(index[0]);
+            int col1 = Integer.parseInt(index[1]);
+            int row2 = Integer.parseInt(index[2]);
+            int col2 = Integer.parseInt(index[3]);
+            swapPosition(positions[row1][col1], positions[row2][col2]);
+            sortLog.append(matrix.toString()).append("\n[frame]\n");
         }
     }
 
